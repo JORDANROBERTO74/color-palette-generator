@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎨 Color Palette Generator
 
-## Getting Started
+A minimalist web application for creating harmonious color palettes from a primary color. Built with Next.js 14, shadcn/ui and Tailwind CSS.
 
-First, run the development server:
+## ✨ Features
+
+- **Minimalist Interface**: Clean and modern design with smooth animations
+- **Smart Generation**: Creates palettes based on color theory (complementary, analogous, triadic)
+- **Interactive**: Click on any color to copy it to clipboard
+- **Responsive**: Works perfectly on mobile and desktop devices
+- **Dark Mode**: Full dark mode support
+- **Animations**: Fluid transitions with Framer Motion
+
+## 🚀 Technologies
+
+- **Next.js 14**: React framework with App Router
+- **TypeScript**: Static typing for better development
+- **Tailwind CSS**: Utility-first CSS framework
+- **shadcn/ui**: Modern and accessible UI components
+- **Framer Motion**: Animations and transitions
+- **Lucide React**: Minimalist icons
+
+## 🛠️ Installation
+
+1. Clone the repository:
+
+```bash
+git clone <your-repository>
+cd color-palette-generator
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - Runs the development server
+- `npm run build` - Builds the app for production
+- `npm run start` - Runs the app in production mode
+- `npm run lint` - Runs the linter
 
-## Learn More
+## 🎯 Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. **Select a Color**: Use the color picker or enter a hexadecimal code
+2. **Generate Randomly**: Click the sparkles button to generate a random color
+3. **Explore the Palette**: The app automatically generates variations of the selected color
+4. **Copy Colors**: Click on any color in the palette to copy it to clipboard
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Generation Algorithm
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The app uses color theory to generate harmonious palettes:
 
-## Deploy on Vercel
+- **Primary Color**: The base color you select
+- **Lightness Variations**: Different shades of the same color
+- **Complementary Colors**: Colors opposite on the color wheel
+- **Analogous Colors**: Colors adjacent on the color wheel
+- **Triadic Colors**: Three colors equidistant on the color wheel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📱 Responsive Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app is optimized for:
+
+- 📱 Mobile (2 columns)
+- 📱 Tablet (4 columns)
+- 💻 Desktop (6 columns)
+- 🖥️ Large screens (8 columns)
+
+## 🌙 Dark Mode
+
+The app automatically supports dark mode based on system preferences.
+
+## 📄 License
+
+This project is under the MIT License.
+
+---
+
+Built with ❤️ using Next.js 14, shadcn/ui and Tailwind CSS.
