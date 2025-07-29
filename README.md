@@ -7,6 +7,7 @@ A minimalist web application for creating harmonious color palettes from a prima
 - **Minimalist Interface**: Clean and modern design with smooth animations
 - **Smart Generation**: Creates palettes based on color theory (complementary, analogous, triadic)
 - **Interactive**: Click on any color to copy it to clipboard
+- **Export Functionality**: Export your color palette as Tailwind CSS, CSS variables, or JSON
 - **Responsive**: Works perfectly on mobile and desktop devices
 - **Dark Mode**: Full dark mode support
 - **Animations**: Fluid transitions with Framer Motion
@@ -56,6 +57,7 @@ npm run dev
 2. **Generate Randomly**: Click the sparkles button to generate a random color
 3. **Explore the Palette**: The app automatically generates variations of the selected color
 4. **Copy Colors**: Click on any color in the palette to copy it to clipboard
+5. **Export Palette**: Click the "Export" button to get Tailwind CSS, CSS variables, or JSON format
 
 ## 🎨 Generation Algorithm
 
