@@ -1,91 +1,99 @@
-# 🎨 Color Palette Generator
+# 🎨 PALETTOR
 
-A minimalist web application for creating harmonious color palettes from a primary color. Built with Next.js 14, shadcn/ui and Tailwind CSS.
+A minimal and responsive web application to generate harmonious color palettes from a base color. Built with Next.js 14, Tailwind CSS, and shadcn/ui, this tool allows you to create, explore, and export color combinations with ease.
+
+🔗 **Live Demo:** [https://palettor.vercel.app](https://palettor.vercel.app)
 
 ## ✨ Features
 
-- **Minimalist Interface**: Clean and modern design with smooth animations
-- **Smart Generation**: Creates palettes based on color theory (complementary, analogous, triadic)
-- **Interactive**: Click on any color to copy it to clipboard
-- **Export Functionality**: Export your color palette as Tailwind CSS, CSS variables, or JSON
-- **Responsive**: Works perfectly on mobile and desktop devices
-- **Dark Mode**: Full dark mode support
-- **Animations**: Fluid transitions with Framer Motion
+* Smart palette generation based on color theory (complementary, analogous, triadic).
+* Minimalist interface with smooth animations.
+* Quick copy of any color to the clipboard.
+* Export palettes in Tailwind CSS, CSS variables, or JSON format.
+* Fully responsive design for all devices.
+* Automatic dark mode based on system preferences.
+* Smooth animations with Framer Motion.
 
-## 🚀 Technologies
+## 🚀 Technologies Used
 
-- **Next.js 14**: React framework with App Router
-- **TypeScript**: Static typing for better development
-- **Tailwind CSS**: Utility-first CSS framework
-- **shadcn/ui**: Modern and accessible UI components
-- **Framer Motion**: Animations and transitions
-- **Lucide React**: Minimalist icons
+* Next.js 14
+* TypeScript
+* Tailwind CSS
+* shadcn/ui
+* Framer Motion
+* Lucide React
 
 ## 🛠️ Installation
 
-1. Clone the repository:
+Clone the repository:
 
 ```bash
-git clone <your-repository>
+git clone https://github.com/JORDANROBERTO74/color-palette-generator.git
 cd color-palette-generator
 ```
 
-2. Install dependencies:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-3. Run the development server:
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open your browser at:
+
+```
+http://localhost:3000
+```
 
 ## 📦 Available Scripts
 
-- `npm run dev` - Runs the development server
-- `npm run build` - Builds the app for production
-- `npm run start` - Runs the app in production mode
-- `npm run lint` - Runs the linter
+```bash
+npm run dev     # Start the server in development mode
+npm run build   # Build the app for production
+npm run start   # Run the production build
+npm run lint    # Run the linter
+```
 
-## 🎯 Usage
+## 🎯 How to Use
 
-1. **Select a Color**: Use the color picker or enter a hexadecimal code
-2. **Generate Randomly**: Click the sparkles button to generate a random color
-3. **Explore the Palette**: The app automatically generates variations of the selected color
-4. **Copy Colors**: Click on any color in the palette to copy it to clipboard
-5. **Export Palette**: Click the "Export" button to get Tailwind CSS, CSS variables, or JSON format
+1. Select a color using the picker or enter a HEX code.
+2. Click the ✨ button to generate a random palette.
+3. Explore the automatically generated colors.
+4. Click any color to copy its HEX value.
+5. Export the palette in Tailwind CSS, CSS variables, or JSON.
 
-## 🎨 Generation Algorithm
+## 🧠 Generation Algorithm
 
-The app uses color theory to generate harmonious palettes:
+The app uses color theory principles to generate harmonious palettes:
 
-- **Primary Color**: The base color you select
-- **Lightness Variations**: Different shades of the same color
-- **Complementary Colors**: Colors opposite on the color wheel
-- **Analogous Colors**: Colors adjacent on the color wheel
-- **Triadic Colors**: Three colors equidistant on the color wheel
+* Primary color
+* Lightness variations (lighter and darker tones)
+* Complementary colors
+* Analogous colors
+* Triadic colors
 
 ## 📱 Responsive Design
 
-The app is optimized for:
-
-- 📱 Mobile (2 columns)
-- 📱 Tablet (4 columns)
-- 💻 Desktop (6 columns)
-- 🖥️ Large screens (8 columns)
+| Device           | Columns |
+| ---------------- | ------- |
+| Mobile           | 1       |
+| Tablet           | 2       |
+| Desktop          | 3       |
+| Large screens    | 3       |
 
 ## 🌙 Dark Mode
 
-The app automatically supports dark mode based on system preferences.
+Dark mode is automatically enabled based on the user's operating system settings.
 
 ## 📄 License
 
-This project is under the MIT License.
+This project is licensed under the terms of the MIT License. See the `LICENSE` file for details.
 
 ---
 
-Built with ❤️ using Next.js 14, shadcn/ui and Tailwind CSS.
+Built with ❤️ by [@JORDANROBERTO74](https://github.com/jordanroberto74).
