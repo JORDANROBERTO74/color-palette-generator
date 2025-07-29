@@ -7,7 +7,8 @@ import dynamic from "next/dynamic";
 import { useColorPalette } from "@/lib/hooks/useColorPalette";
 import ColorPalette from "./ColorPalette";
 import ExportDialog from "./ExportDialog";
-import { useState } from "react";
+import ContrastGrid from "./ContrastGrid";
+import { useState, useMemo } from "react";
 import { parseColorString, isValidHexColor } from "@/lib/colorUtils";
 import { useEffect, useRef } from "react";
 
@@ -46,14 +47,19 @@ export default function ColorPaletteGenerator() {
   const [isFormatDropdownOpen, setIsFormatDropdownOpen] = useState(false);
   const [inputValue, setInputValue] = useState(formattedColor);
   const [isEditing, setIsEditing] = useState(false);
+  const [isContrastGridOpen, setIsContrastGridOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLDivElement>(null);
 
-  const formatOptions = [
-    { value: "hex", label: "HEX" },
-    { value: "hsl", label: "HSL" },
-    { value: "oklch", label: "OKLCH" },
-  ];
+  // Memoize expensive operations
+  const formatOptions = useMemo(
+    () => [
+      { value: "hex", label: "HEX" },
+      { value: "hsl", label: "HSL" },
+      { value: "oklch", label: "OKLCH" },
+    ],
+    []
+  );
 
   // Update input value when formattedColor changes
   useEffect(() => {
@@ -293,6 +299,7 @@ export default function ColorPaletteGenerator() {
               className="text-xs"
               aria-label="Open contrast grid"
               title="View color contrast grid"
+              onClick={() => setIsContrastGridOpen(true)}
             >
               <Grid className="w-3 h-3 mr-1" />
               Contrast grid
@@ -316,6 +323,14 @@ export default function ColorPaletteGenerator() {
 
         {/* Example Components */}
         <ExampleComponents primaryColor={primaryColor} />
+
+        {/* Contrast Grid Dialog */}
+        <ContrastGrid
+          isOpen={isContrastGridOpen}
+          onClose={() => setIsContrastGridOpen(false)}
+          palette={palette}
+          primaryColor={primaryColor}
+        />
       </div>
     </div>
   );
