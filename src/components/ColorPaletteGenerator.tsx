@@ -21,7 +21,10 @@ const ExampleComponents = dynamic(() => import("./ExampleComponents"), {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
         {Array.from({ length: 3 }).map((_, i) => (
-          <div key={i} className="h-48 bg-gray-100 rounded-lg animate-pulse" />
+          <div
+            key={i}
+            className="h-[350px] bg-gray-100 rounded-lg animate-pulse"
+          />
         ))}
       </div>
     </div>
@@ -45,10 +48,12 @@ export default function ColorPaletteGenerator() {
   } = useColorPalette();
 
   const [isFormatDropdownOpen, setIsFormatDropdownOpen] = useState(false);
+  const [isColorDropdownOpen, setIsColorDropdownOpen] = useState(false);
   const [inputValue, setInputValue] = useState(formattedColor);
   const [isEditing, setIsEditing] = useState(false);
   const [isContrastGridOpen, setIsContrastGridOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const colorDropdownRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLDivElement>(null);
 
   // Memoize expensive operations
@@ -57,6 +62,22 @@ export default function ColorPaletteGenerator() {
       { value: "hex", label: "HEX" },
       { value: "hsl", label: "HSL" },
       { value: "oklch", label: "OKLCH" },
+    ],
+    []
+  );
+
+  const predefinedColors = useMemo(
+    () => [
+      { name: "Rojo", value: "#FF0000" },
+      { name: "Amarillo", value: "#FFFF00" },
+      { name: "Verde", value: "#00FF00" },
+      { name: "Rosa", value: "#FFC0CB" },
+      { name: "Negro", value: "#000000" },
+      { name: "Blanco", value: "#FFFFFF" },
+      { name: "Azul", value: "#0000FF" },
+      { name: "Naranja", value: "#FFA500" },
+      { name: "Morado", value: "#800080" },
+      { name: "Cyan", value: "#00FFFF" },
     ],
     []
   );
@@ -75,6 +96,14 @@ export default function ColorPaletteGenerator() {
         !dropdownRef.current.contains(event.target as Node)
       ) {
         setIsFormatDropdownOpen(false);
+      }
+
+      // Check if click is outside color dropdown
+      if (
+        colorDropdownRef.current &&
+        !colorDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsColorDropdownOpen(false);
       }
 
       // Check if click is outside input and sliders area
@@ -197,9 +226,22 @@ export default function ColorPaletteGenerator() {
     setIsFormatDropdownOpen(false);
   };
 
+  const handleColorSelection = (colorValue: string) => {
+    setPrimaryColor(colorValue);
+    setIsColorDropdownOpen(false);
+  };
+
   return (
-    <div className="min-h-screen bg-white p-6">
+    <div className="h-full w-[100vw] md:w-full bg-white p-6">
       <div className="max-w-6xl mx-auto">
+        {/* Main Title */}
+        <div className="text-center mb-8 mt-4">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Palettor</h1>
+          <p className="text-lg text-gray-600">
+            Create professional color palettes with one click
+          </p>
+        </div>
+
         {/* Top Section - Centered Color Input */}
         <div className="flex flex-col items-center mb-8">
           {/* Central Color Input Section */}
@@ -292,19 +334,67 @@ export default function ColorPaletteGenerator() {
           </div>
 
           {/* Action Buttons - Positioned below and to the right */}
-          <div className="flex items-center gap-2 mt-4 ml-auto">
-            <Button
-              variant="outline"
-              size="sm"
-              className="text-xs"
-              aria-label="Open contrast grid"
-              title="View color contrast grid"
-              onClick={() => setIsContrastGridOpen(true)}
-            >
-              <Grid className="w-3 h-3 mr-1" />
-              Contrast grid
-            </Button>
-            <ExportDialog palette={palette} primaryColor={primaryColor} />
+          <div className="flex items-center gap-2 mt-4 w-full">
+            {/* Color Selection Dropdown - Positioned to the left */}
+            <div className="relative" ref={colorDropdownRef}>
+              <div
+                className="flex items-center gap-1 bg-white px-3 py-2 rounded border cursor-pointer hover:bg-gray-50 text-xs"
+                role="button"
+                tabIndex={0}
+                aria-label="Color selector"
+                title="Select predefined color"
+                onClick={() => setIsColorDropdownOpen(!isColorDropdownOpen)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setIsColorDropdownOpen(!isColorDropdownOpen);
+                  }
+                }}
+              >
+                <span className="text-gray-600">Colores</span>
+                <ChevronDown
+                  className={`w-3 h-3 text-gray-500 transition-transform ${
+                    isColorDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </div>
+
+              {/* Color Dropdown Menu */}
+              {isColorDropdownOpen && (
+                <div className="absolute left-0 top-full mt-1 bg-white border rounded-lg shadow-lg z-10 min-w-[120px] max-h-60 overflow-y-auto">
+                  {predefinedColors.map((color) => (
+                    <button
+                      key={color.value}
+                      className="w-full text-left px-3 py-2 text-xs hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg flex items-center gap-2"
+                      onClick={() => handleColorSelection(color.value)}
+                    >
+                      <div
+                        className="w-4 h-4 rounded border"
+                        style={{ backgroundColor: color.value }}
+                      />
+                      <span className="text-gray-700">{color.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2 ml-auto">
+              <div className="hidden md:block">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs"
+                  aria-label="Open contrast grid"
+                  title="View color contrast grid"
+                  onClick={() => setIsContrastGridOpen(true)}
+                >
+                  <Grid className="w-3 h-3 mr-1" />
+                  Contrast grid
+                </Button>
+              </div>
+              <ExportDialog palette={palette} primaryColor={primaryColor} />
+            </div>
           </div>
         </div>
 

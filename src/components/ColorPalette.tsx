@@ -33,9 +33,9 @@ const ColorPalette = memo(function ColorPalette({
     return (
       <div className="mb-8">
         <h2 className="sr-only">Generated Color Palette</h2>
-        <div className="flex gap-1">
+        <div className="flex gap-1 overflow-x-auto pb-4 md:overflow-visible md:pb-0">
           {Array.from({ length: 11 }).map((_, index) => (
-            <div key={index} className="flex-1">
+            <div key={index} className="flex-shrink-0 w-16 md:flex-1 md:w-auto">
               <div className="h-20 bg-gray-200 rounded animate-pulse" />
               <div className="text-center mt-4">
                 <div className="h-3 bg-gray-200 rounded animate-pulse mx-auto w-8 mb-2" />
@@ -52,7 +52,7 @@ const ColorPalette = memo(function ColorPalette({
     <div className="mb-8">
       <h2 className="sr-only">Generated Color Palette</h2>
       <div
-        className={`flex gap-1 rounded-lg`}
+        className={`flex gap-1 rounded-lg overflow-x-auto pb-4 md:overflow-visible md:pb-0`}
         role="grid"
         aria-label="Color palette with 11 shades"
         onKeyDown={onPaletteKeyDown}
@@ -60,7 +60,10 @@ const ColorPalette = memo(function ColorPalette({
       >
         {!palette?.length
           ? Array.from({ length: 11 }).map((_, index) => (
-              <div key={index} className="flex-1 group">
+              <div
+                key={index}
+                className="flex-shrink-0 w-16 group md:flex-1 md:w-auto"
+              >
                 <div className="h-20 bg-gray-200 rounded animate-pulse" />
                 <div className="text-center mt-4">
                   <div className="h-3 bg-gray-200 rounded animate-pulse mx-auto w-8 mb-2" />
@@ -71,7 +74,7 @@ const ColorPalette = memo(function ColorPalette({
           : palette?.map(({ color, shade }, index) => (
               <div
                 key={shade}
-                className="flex-1 group"
+                className="flex-shrink-0 w-16 group md:flex-1 md:w-auto"
                 role="gridcell"
                 aria-label={`Color shade ${shade}: ${color}`}
               >
