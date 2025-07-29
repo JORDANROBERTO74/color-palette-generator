@@ -140,7 +140,7 @@ export default function ExportDialog({
           Export
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="w-full max-w-[100vw] md:max-w-4xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Export Color Palette</DialogTitle>
           <DialogDescription>
@@ -148,50 +148,52 @@ export default function ExportDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <Tabs defaultValue="tailwind" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
+        <Tabs defaultValue="tailwind" className="w-full overflow-x-auto">
+          <TabsList className="w-full grid grid-cols-3">
             <TabsTrigger value="tailwind">Tailwind CSS</TabsTrigger>
             <TabsTrigger value="css">CSS Variables</TabsTrigger>
             <TabsTrigger value="json">JSON</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="tailwind" className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-medium">
-                Tailwind CSS Configuration
-              </h3>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => copyToClipboard(tailwindCSS, "Tailwind CSS")}
-                className="text-xs"
-              >
-                {copiedSection === "Tailwind CSS" ? (
-                  <Check className="w-3 h-3 mr-1" />
-                ) : (
-                  <Copy className="w-3 h-3 mr-1" />
-                )}
-                {copiedSection === "Tailwind CSS" ? "Copied!" : "Copy"}
-              </Button>
-            </div>
-            <div className="rounded-lg overflow-hidden border">
-              <SyntaxHighlighter
-                language="javascript"
-                style={tomorrow}
-                customStyle={{
-                  margin: 0,
-                  borderRadius: "0.5rem",
-                  fontSize: "0.875rem",
-                }}
-                showLineNumbers={true}
-                lineNumberStyle={{
-                  color: "#6b7280",
-                  fontSize: "0.75rem",
-                  paddingRight: "1rem",
-                }}
-              >
-                {tailwindCSS}
-              </SyntaxHighlighter>
+          <TabsContent value="tailwind">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-medium">
+                  Tailwind CSS Configuration
+                </h3>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => copyToClipboard(tailwindCSS, "Tailwind CSS")}
+                  className="text-xs"
+                >
+                  {copiedSection === "Tailwind CSS" ? (
+                    <Check className="w-3 h-3 mr-1" />
+                  ) : (
+                    <Copy className="w-3 h-3 mr-1" />
+                  )}
+                  {copiedSection === "Tailwind CSS" ? "Copied!" : "Copy"}
+                </Button>
+              </div>
+              <div className="rounded-lg overflow-hidden border">
+                <SyntaxHighlighter
+                  language="javascript"
+                  style={tomorrow}
+                  customStyle={{
+                    margin: 0,
+                    borderRadius: "0.5rem",
+                    fontSize: "0.875rem",
+                  }}
+                  showLineNumbers={true}
+                  lineNumberStyle={{
+                    color: "#6b7280",
+                    fontSize: "0.75rem",
+                    paddingRight: "1rem",
+                  }}
+                >
+                  {tailwindCSS}
+                </SyntaxHighlighter>
+              </div>
             </div>
           </TabsContent>
 
